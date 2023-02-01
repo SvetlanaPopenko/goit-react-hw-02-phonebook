@@ -74,10 +74,10 @@ export class App extends Component {
           justifyContent: 'center',
           alignItems: 'center',
           flexDirection: 'column',
-          gap: '40px',
           padding: '50px',
           fontSize: 40,
-          color: '#010101',
+          color: '#eeedf8',
+          backgroundColor: '#2c9af4',
         }}
       >
         <div>
