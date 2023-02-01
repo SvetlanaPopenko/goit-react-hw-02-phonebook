@@ -42,7 +42,7 @@ const ContactForm = ({onSubmit}) => {
           <ErrorMessage name="name" component="div" />
         </label>
         <label htmlFor="number">
-          Phone:
+          Number
           <Field type="tel" name="number" />
           <ErrorMessage name="number" component="div" />
         </label>
