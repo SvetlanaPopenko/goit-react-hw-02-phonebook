@@ -4,6 +4,7 @@ import ContactList from './ContactList';
 import Filter from './Filter';
 import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
+import { Container} from './App.styled';
 
 export class App extends Component {
   static defaultProps = {
@@ -80,7 +81,7 @@ export class App extends Component {
           backgroundColor: '#2c9af4',
         }}
       >
-        <div>
+        <Container>
           <h1>Phonebook</h1>
           <ContactForm onSubmit={this.addContact} />
           <h2>Contacts</h2>
@@ -89,7 +90,7 @@ export class App extends Component {
             contacts={visibleContacts}
             onDeleteContact={this.deleteContacts}
           />
-        </div>
+        </Container>
       </div>
     );
   }
