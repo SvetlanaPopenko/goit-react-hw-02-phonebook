@@ -1,10 +1,22 @@
-import { nanoid } from 'nanoid';
 import { Component } from 'react';
-import ContactForm from './ContactForm/ContactForm';
+import ContactForm from './ContactForm';
 import ContactList from './ContactList';
 import Filter from './Filter';
+import { nanoid } from 'nanoid';
+import PropTypes from 'prop-types';
 
 export class App extends Component {
+  static defaultProps = {
+    contacts: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        number: PropTypes.string.isRequired,
+      }).isRequired
+    ),
+    filter: PropTypes.string.isRequired,
+  };
+
   state = {
     contacts: [
       { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
@@ -13,27 +25,26 @@ export class App extends Component {
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
     filter: '',
-    name: '',
-    number: '',
+  };
+  checkedContact = (contacts, values) => {
+    return contacts.find(contact => contact.name === values.name);
   };
 
   addContact = values => {
     values.id = nanoid();
-    
+    if (this.checkedContact(this.state.contacts, values)) {
+      return alert(`${values.name} is already in contacts`);
+    }
+
     this.setState(prevState => ({
-      contacts: [values, ...prevState.values],
+      contacts: [values, ...prevState.contacts],
     }));
-    
   };
 
   deleteContacts = contactId => {
     this.setState(prevState => ({
       contacts: prevState.contacts.filter(contact => contact.id !== contactId),
     }));
-  };
-
-  formSubmitHandler = data => {
-    console.log(data);
   };
 
   changeFilter = event => {
@@ -63,20 +74,22 @@ export class App extends Component {
           justifyContent: 'center',
           alignItems: 'center',
           flexDirection: 'column',
+          gap: '40px',
+          padding: '50px',
           fontSize: 40,
           color: '#010101',
         }}
       >
         <div>
           <h1>Phonebook</h1>
-          <ContactForm onSubmit={this.formSubmitHandler} />
+          <ContactForm onSubmit={this.addContact} />
+          <h2>Contacts</h2>
+          <Filter value={filter} onChange={this.changeFilter} />
+          <ContactList
+            contacts={visibleContacts}
+            onDeleteContact={this.deleteContacts}
+          />
         </div>
-        <Filter value={filter} onChange={this.changeFilter} />
-        <h2>Contacts</h2>
-        <ContactList
-          contacts={visibleContacts}
-          onDeleteContacts={this.deleteContacts}
-        />
       </div>
     );
   }
