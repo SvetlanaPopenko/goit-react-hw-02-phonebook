@@ -1,31 +1,36 @@
 import styled from '@emotion/styled';
-import { ErrorMessage, Field } from 'formik';
+import { ErrorMessage, Field, Form } from 'formik';
 
+export const ContactFormWrap = styled(Form)`
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+`;
 export const ContactText = styled.label`
-
-display: flex;
-flex-direction: column;
-    gap:20px;
-`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
 
 export const ContactInput = styled(Field)`
-height: 40px;
-    border-radius: 15px;
-    font-size:30px;
-    color: blueviolet;
-    `;
-   
-export const Error = styled(ErrorMessage)`
-font-size: 24px;
-  width: fit-content;
-    color: red;
-   
-   `
+  height: 40px;
+  border-radius: 15px;
+  font-size: 30px;
+  color: blueviolet;
+`;
 
-   export const ContactFormButton = styled.button`
+export const Error = styled(ErrorMessage)`
+  font-size: 24px;
+  width: fit-content;
+  color: red;
+`;
+
+export const ContactFormButton = styled.button`
   font-size: 24px;
   color: white;
-  margin-left: auto;
   border-radius: 15px;
   border: inherit;
   background: linear-gradient(160deg, #ed8bf8, #6d0462);
