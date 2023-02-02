@@ -1,10 +1,15 @@
 import React from 'react';
-import { Formik, Form} from 'formik';
+import { Formik } from 'formik';
 import * as yup from 'yup';
 import 'yup-phone';
 import PropTypes from 'prop-types';
-import { ContactFormButton, ContactInput, ContactText, Error } from './ContactForm.styled';
-
+import {
+  ContactFormWrap,
+  ContactFormButton,
+  ContactInput,
+  ContactText,
+  Error,
+} from './ContactForm.styled';
 
 const schema = yup.object().shape({
   name: yup
@@ -22,13 +27,11 @@ const initialValues = {
   number: '',
 };
 
-const ContactForm = ({onSubmit}) => {
+const ContactForm = ({ onSubmit }) => {
   const handleSubmit = (values, { resetForm }) => {
     onSubmit(values);
     resetForm();
   };
-
-  
 
   return (
     <Formik
@@ -36,7 +39,7 @@ const ContactForm = ({onSubmit}) => {
       onSubmit={handleSubmit}
       validationSchema={schema}
     >
-      <Form autoComplete="off">
+      <ContactFormWrap autoComplete="off">
         <ContactText htmlFor="name">
           Name
           <ContactInput type="text" name="name" />
@@ -48,13 +51,13 @@ const ContactForm = ({onSubmit}) => {
           <Error name="number" component="div" />
         </ContactText>
         <ContactFormButton type="submit">Add contact</ContactFormButton>
-      </Form>
+      </ContactFormWrap>
     </Formik>
   );
 };
 ContactForm.propTypes = {
-  onSubmit:PropTypes.func.isRequired,
-}
+  onSubmit: PropTypes.func.isRequired,
+};
 export default ContactForm;
 
 // class ContactForm extends Component {
