@@ -1,8 +1,9 @@
 import React from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form} from 'formik';
 import * as yup from 'yup';
 import 'yup-phone';
 import PropTypes from 'prop-types';
+import { ContactFormButton, ContactInput, ContactText, Error } from './ContactForm.styled';
 
 
 const schema = yup.object().shape({
@@ -36,17 +37,17 @@ const ContactForm = ({onSubmit}) => {
       validationSchema={schema}
     >
       <Form autoComplete="off">
-        <label htmlFor="name">
+        <ContactText htmlFor="name">
           Name
-          <Field type="text" name="name" />
-          <ErrorMessage name="name" component="div" />
-        </label>
-        <label htmlFor="number">
+          <ContactInput type="text" name="name" />
+          <Error name="name" component="div" />
+        </ContactText>
+        <ContactText htmlFor="number">
           Number
-          <Field type="tel" name="number" />
-          <ErrorMessage name="number" component="div" />
-        </label>
-        <button type="submit">Add contact</button>
+          <ContactInput type="tel" name="number" />
+          <Error name="number" component="div" />
+        </ContactText>
+        <ContactFormButton type="submit">Add contact</ContactFormButton>
       </Form>
     </Formik>
   );
