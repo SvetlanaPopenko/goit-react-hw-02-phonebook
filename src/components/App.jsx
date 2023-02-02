@@ -4,7 +4,7 @@ import ContactList from './ContactList';
 import Filter from './Filter';
 import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
-import { Container} from './App.styled';
+import { Container } from './App.styled';
 
 export class App extends Component {
   static defaultProps = {
@@ -70,15 +70,13 @@ export class App extends Component {
     return (
       <div
         style={{
-          height: '100vh',
+          marginTop: '50px',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
           flexDirection: 'column',
-          padding: '50px',
           fontSize: 40,
           color: '#eeedf8',
-          backgroundColor: '#2c9af4',
         }}
       >
         <Container>
