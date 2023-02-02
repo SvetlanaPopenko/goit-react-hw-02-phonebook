@@ -47,7 +47,7 @@ const ContactForm = ({ onSubmit }) => {
         </ContactText>
         <ContactText htmlFor="number">
           Number
-          <ContactInput type="tel" name="number" />
+          <ContactInput type="tel" name="number" placeholder="+380XXXXXXXXX"/>
           <Error name="number" component="div" />
         </ContactText>
         <ContactFormButton type="submit">Add contact</ContactFormButton>
